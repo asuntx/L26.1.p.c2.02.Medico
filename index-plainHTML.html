@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultorio Médico - HTML Plano</title>
+  </head>
+
+  <body>
+    <section id="body">
+      <h2>Consultorio Médico (MVC Plano)</h2>
+      <button id="body_btNuevoPaciente">Registrar Nuevo Paciente</button>
+      <hr />
+      <div>
+        <p>
+          <strong>R1- Totales varios: </strong
+          ><span id="lblTotalesVarios">0.00$</span>
+        </p>
+        <strong>R2- Porcentajes por atención</strong>
+        <ul>
+          <li>
+            <span>Porcentaje Procedimiento (1): </span
+            ><span id="lblPorcentajeProcedimiento">0.00%</span>
+          </li>
+          <li>
+            <span>Porcentaje Consulta (2): </span
+            ><span id="lblPorcentajeConsulta">0.00%</span>
+          </li>
+          <li>
+            <span>Porcentaje Control (3): </span
+            ><span id="lblPorcentajeControl">0.00%</span>
+          </li>
+        </ul>
+        <strong>R3- Porcentaje por descuento:</strong>
+        <ul>
+          <li>
+            <span>Con descuento:</span>
+            <span id="lblPorcentajeConDescuento">0.00%</span>
+          </li>
+          <li>
+            <span>Sin descuento:</span>
+            <span id="lblPorcentajeSinDescuento">0.00%</span>
+          </li>
+        </ul>
+        <p>
+          <strong>R4- Promedio de peso:</strong>
+          <span id="lblPromedioPeso">0.00 kg</span>
+        </p>
+      </div>
+    </section>
+
+    <section
+      id="paciente"
+      hidden
+      style="
+        margin-top: 20px;
+        border: 2px solid #333;
+        padding: 15px;
+        width: 350px;
+        background-color: #f0f0f0;
+      "
+    >
+      <h3 id="paciente_lblTitulo">Datos del Paciente</h3>
+
+      <div style="margin-top: 10px">
+        <label>Nombre: <input type="text" id="paciente_inNombre" /></label>
+      </div>
+      <div style="margin-top: 10px">
+        <label>Apellido: <input type="text" id="paciente_inApellido" /></label>
+      </div>
+      <div style="margin-top: 10px">
+        <label>Cédula: <input type="text" id="paciente_inCedula" /></label>
+      </div>
+      <div style="margin-top: 10px">
+        <label
+          >Sexo:
+          <select id="paciente_inSexo">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </label>
+      </div>
+      <div style="margin-top: 10px">
+        <label
+          >Fecha Nacimiento (YYYY-MM-DD):
+          <input type="date" id="paciente_inFechaNacimiento"
+        /></label>
+      </div>
+      <div style="margin-top: 10px">
+        <label
+          >Tipo de Atención:
+          <select id="paciente_inTipoAtencion">
+            <option value="1">Procedimiento</option>
+            <option value="2">Consulta</option>
+            <option value="3">Control</option>
+          </select>
+        </label>
+      </div>
+      <div style="margin-top: 10px">
+        <label
+          >Peso (kg): <input type="number" id="paciente_inPeso" step="0.1"
+        /></label>
+      </div>
+
+      <div style="margin-top: 20px">
+        <button id="paciente_btCancelar">Cancelar</button>
+        <button
+          id="paciente_btAceptar"
+          style="background-color: #4caf50; color: white"
+        >
+          Aceptar
+        </button>
+      </div>
+    </section>
+
+    <script type="module">
+      import medico from "./dist/principal.js";
+      import Cl_vMedico from "./dist/views/Cl_vMedico.js";
+      import Cl_vPaciente from "./dist/views/Cl_vPaciente.js";
+      import Cl_cPaciente from "./dist/controllers/Cl_cPaciente.js";
+      import Cl_cMedico from "./dist/controllers/Cl_cMedico.js";
+
+      // Inicializar las Vistas Plain
+      const vMedico = new Cl_vMedico();
+      const vPaciente = new Cl_vPaciente();
+
+      // Inicializar los Controladores
+      const cPaciente = new Cl_cPaciente(vPaciente);
+      new Cl_cMedico(medico, vMedico, cPaciente);
+    </script>
+  </body>
+</html>
